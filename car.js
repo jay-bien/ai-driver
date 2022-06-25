@@ -37,13 +37,24 @@ class Car {
     update( canvas ){
         if( this.controller.forward){
             this.speed += this.accelaration;
-        } else if( this.controller.right){
-            this.angle -= .02;
-        } else if( this.controller.reverse){
+        } 
+
+        if( this.controller.reverse){
             this.speed -= this.accelaration;
-        } else if( this.controller.left){
-            this.angle += .02;
+        } 
+ 
+
+        //flip angle when car is in reverse 
+        if( this.speed != 0){
+            const flip = this.speed > 0 ? 1 : -1;
+            if( this.controller.left){
+                this.angle += .02 * flip;
+            }
+            if( this.controller.right){
+                this.angle -= .02 * flip;
+            } 
         }
+
 
         if( this.speed > this.maxSpeed) this.speed = this.maxSpeed;
         if( this.speed < -this.maxSpeed ) this.speed = -this.maxSpeed;
