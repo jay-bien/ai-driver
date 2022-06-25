@@ -35,6 +35,10 @@ class Car {
     }
 
     update( canvas ){
+        this.#move();
+    }
+
+    #move(){
         if( this.controller.forward){
             this.speed += this.accelaration;
         } 
