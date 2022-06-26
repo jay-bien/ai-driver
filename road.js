@@ -1,5 +1,5 @@
 class Road {
-    constructor( x, width, laneCount = 2){
+    constructor( x, width, laneCount = 5){
         this.x = x;
         this.width = width;
         this.laneCount = laneCount;
@@ -8,11 +8,27 @@ class Road {
         this.right = x + width / 2;
         this.top = -Number.MAX_SAFE_INTEGER;
         this.bottom = Number.MAX_SAFE_INTEGER;
+
+        const topLeft =  { x: this.left, y : this.top};
+        const topRight =  { x: this.right, y : this.top};
+        const bottomRight =  { x: this.right, y : this.bottom};
+        const bottomLeft =  { x: this.left, y : this.bottom};
+        this.borders = [
+            [ topLeft, bottomLeft],
+            [topRight, bottomRight ]
+        ]
+    }
+
+    getLaneCenter( index ){
+        const laneWidth = this.width/this.laneCount;
+        return this.left+laneWidth/2+index*laneWidth;
     }
 
     draw( ctx ){
-        ctx.lineWidth = 10;
+        ctx.lineWidth = 4;
         ctx.strokeStyle = 'white';
+ 
+
 
 
         for( let i = 0; i <= this.laneCount; i++){
@@ -21,21 +37,21 @@ class Road {
                 this.right,
                 i / this.laneCount
             )
+
+
+
             ctx.beginPath();
+            ctx.setLineDash([ 10, 20])
             ctx.moveTo(x, this.top );
             ctx.lineTo( x, this.bottom );
             ctx.stroke();
         }
 
-
-        
-        // ctx.beginPath();
-        // ctx.moveTo( this.right, this.top );
-        // ctx.lineTo( this.right, this.bottom );
-        // ctx.stroke();
+        this.borders.forEach( border => {
+           ctx.beginPath();
+           ctx.moveTo( border[0].x, border[0].y);
+           ctx.lineTo( border[1].x, border[1].y );
+           ctx.stroke() 
+        })
     }
-}
-
-function linearInterpolate( A, B, t){
-    return A+(B-A) * t;
 }
