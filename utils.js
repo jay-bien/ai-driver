@@ -1,4 +1,4 @@
 
-function linearInterpolate( A, B, t){
-    return A+(B-A) * t;
+function linearInterpolate(A,B,t){
+    return A+(B-A)*t;
 }
