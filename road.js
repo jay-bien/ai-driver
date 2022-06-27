@@ -6,8 +6,10 @@ class Road {
 
         this.left = x - width /2;
         this.right = x + width / 2;
-        this.top = -Number.MAX_SAFE_INTEGER;
-        this.bottom = Number.MAX_SAFE_INTEGER;
+
+        const maxSafeNumber = 9000000;
+        this.top = - maxSafeNumber;
+        this.bottom = maxSafeNumber;
 
         const topLeft =  { x: this.left, y : this.top};
         const topRight =  { x: this.right, y : this.top};
@@ -25,13 +27,13 @@ class Road {
     }
 
     draw( ctx ){
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 6;
         ctx.strokeStyle = 'white';
  
 
 
 
-        for( let i = 0; i <= this.laneCount; i++){
+        for( let i = 1; i <= this.laneCount - 1; i++){
             const x = linearInterpolate(
                 this.left,
                 this.right,
@@ -39,16 +41,18 @@ class Road {
             )
 
 
-
             ctx.beginPath();
-            ctx.setLineDash([ 10, 20])
+            ctx.setLineDash([ 30, 20])
             ctx.moveTo(x, this.top );
             ctx.lineTo( x, this.bottom );
             ctx.stroke();
         }
 
+        ctx.setLineDash([]);
+
         this.borders.forEach( border => {
            ctx.beginPath();
+           ctx.strokeStyle = "";
            ctx.moveTo( border[0].x, border[0].y);
            ctx.lineTo( border[1].x, border[1].y );
            ctx.stroke() 
