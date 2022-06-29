@@ -36,9 +36,9 @@ class Car {
         this.sensor.draw( ctx );
     }
 
-    update( canvas ){
+    update( canvas, roadBorders ){
         this.#move();
-        this.sensor.update();
+        this.sensor.update( roadBorders);
     }
 
     #move(){
