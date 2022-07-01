@@ -9,7 +9,7 @@ console.warn({ Car });
 
 
 console.log({ Road });
-const road = new Road( canvas.width / 2, canvas.width * 0.9);
+const road = new Road( canvas.width / 2, canvas.width * 0.7);
 const car = new Car( road.getLaneCenter(0), 100, 30, 50);
 
 
