@@ -7,7 +7,7 @@ class Road {
         this.left = x - width /2;
         this.right = x + width / 2;
 
-        const maxSafeNumber = 9000000;
+        const maxSafeNumber = 1000000;
         this.top = - maxSafeNumber;
         this.bottom = maxSafeNumber;
 
