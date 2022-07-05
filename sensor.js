@@ -3,23 +3,27 @@ class Sensor {
         this.car = car;
         this.rayCount= 9;
         this.rayLength = 150;
-        this.raySpread = Math.PI * 2 ;
+        this.raySpread = Math.PI  ;
         this.rays = [];
 
         this.readings = [];
 
     }
 
-    update( roadBorders ){
+    update( roadBorders, traffic ){
         this.#castRays();
         this.readings = [];
         for( let i = 0; i <  this.rays.length; i++){
-            const reading = this.#getReading( this.rays[ i ], roadBorders );
+            const reading = this.#getReading(
+                 this.rays[ i ],
+                  roadBorders,
+                  traffic
+                   );
             this.readings.push( reading );
         }
     }
 
-    #getReading( ray, roadBorders){
+    #getReading( ray, roadBorders, traffic){
         let touches = [];
         for( let i = 0; i < roadBorders.length; i++){
             const touch = getIntersection(
@@ -30,6 +34,23 @@ class Sensor {
             if( touch ){
                 touches.push( touch );
             }
+        }
+
+
+        for( let i = 0; i < traffic.length; i++){
+            const polygon = traffic[i].polygon;
+            for(let j = 0; j < polygon.length; j++){
+                const intersecting = getIntersection(
+                    ray[0],
+                    ray[ 1 ],
+                    polygon[ j ],
+                    polygon[ (j + 1) % polygon.length ]
+                );
+                if( intersecting ) touches.push( intersecting );
+
+            }
+
+
         }
 
         if( ! touches.length ){

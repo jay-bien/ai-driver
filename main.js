@@ -13,15 +13,15 @@ const road = new Road( canvas.width / 2, canvas.width * 0.7);
 // const car = new Car( road.getLaneCenter(0), 100, 30, 50);
 
 
-let car = new Car( road.getLaneCenter( 1 ), 100, 5, 50, 5, "KEYS");
+let car = new Car( road.getLaneCenter( 1 ), 100, 5, 50, 8, "KEYS");
 
 
 const traffic = [
-    new Car( road.getLaneCenter( 1 ), 20, 20, 110, 2),
-    new Car( road.getLaneCenter( 0 ), 10, 20, 110, 2),
-    new Car( road.getLaneCenter( 2 ), 800, 30, 30, 2),
+    new Car( road.getLaneCenter( 1 ), 20, 20, 110, 5),
+    new Car( road.getLaneCenter( 0 ), 10, 20, 110, 5),
+    new Car( road.getLaneCenter( 2 ), 800, 30, 30, 5),
 ];
-
+ 
 
 // console.log({ traffic },{car},{car2});
 
@@ -31,10 +31,11 @@ animate(  );
 function animate(  ){
 
 
-    car.update( canvas, road.borders, traffic );
     for( let i = 0; i < traffic.length; i++){
         traffic[i].update( canvas, road.borders, [] );
     }
+    car.update( canvas, road.borders, traffic );
+
     ctx.clearRect( 0, 0, canvas.width, canvas.height);
 
     ctx.save();
