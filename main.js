@@ -13,7 +13,7 @@ const road = new Road( canvas.width / 2, canvas.width * 0.7);
 // const car = new Car( road.getLaneCenter(0), 100, 30, 50);
 
 
-let car = new Car( road.getLaneCenter( 1 ), 100, 5, 50, 8, "KEYS");
+let car = new Car( road.getLaneCenter( 1 ), 100, 5, 50, 8, "AI");
 
 
 const traffic = [
