@@ -9,3 +9,7 @@ body{
 #mainCanvas{
     background: #3D4849;
 }
+
+#networkCanvas{
+     background: #0d0d0d;
+}
