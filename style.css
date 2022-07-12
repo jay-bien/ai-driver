@@ -1,13 +1,25 @@
 body{
     margin: 0;
     overflow: hidden;
-    text-align: center;
     background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
 #mainCanvas{
     background: #3D4849;
+}
+#buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    border: none;
+    margin: 2px;
+    cursor: pointer;
 }
 
 #networkCanvas{

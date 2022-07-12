@@ -32,14 +32,14 @@ class Car {
 
     
 
-    draw( ctx ){
+    draw( ctx, color, drawSensor = false ){
 
 
         ctx.beginPath();
         if( this.damaged){
-            ctx.fillStyle = "red"
+            ctx.fillStyle = "red";
         } else {
-            ctx.fillStyle = "black"
+            ctx.fillStyle =  color || "black";
         }
         ctx.moveTo(
             this.polygon[0 ].x,
@@ -52,7 +52,7 @@ class Car {
             )
         };
         ctx.fill();
-        if( this.sensor ) this.sensor.draw( ctx );
+        if( this.sensor && drawSensor ) this.sensor.draw( ctx );
     }
 
     update( canvas, roadBorders, traffic ){
