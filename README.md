@@ -1,4 +1,5 @@
 # AI Driven Car
 
-AI driven car that reads the road, has sensors that read nearby obstacles, avoids collisions. App will also simulate traffic. AI will use neural network.
+Simulation of AI and car that learns to navigate the road by using sensors to sense obstacles and a simple network to learn and make decisions about the world around it.  
 
+![PREVIEW](./assets//images/ai-car-3.gif)
